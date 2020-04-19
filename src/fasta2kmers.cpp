@@ -13,7 +13,7 @@ void split_seq(char *name, char *seq, int l, int k)
 	buffer[k]=0;
 	for (int i=0; i< l-k+1; i++) {
 		memcpy(buffer, seq+i, k*sizeof(char));
-		printf(">%d.%s\n%s\n", i, name, buffer);
+		printf(">%d@%s\n%s\n", i, name, buffer);
 	}
 }
 
