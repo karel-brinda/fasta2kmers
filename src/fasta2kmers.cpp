@@ -1,3 +1,4 @@
+#include <errno.h>
 #include <stdio.h>
 #include <zlib.h>
 
@@ -27,9 +28,14 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 	int k=atoi(argv[2]);
-	fp = gzopen(argv[1], "r");
-	seq = kseq_init(fp);
+	char *fn = argv[1];
+	fp = gzopen(fn, "r");
+	if(fp==0){
+		fprintf(stderr, "Couldn't open %s : %s\n", fn, errno ? strerror(errno) : "Out of memory");
+	}
 
+
+	seq = kseq_init(fp);
 	while ((l = kseq_read(seq)) >= 0) { // STEP 4: read sequence
 		split_seq(seq->name.s, seq->seq.s, l, k);
 	}
