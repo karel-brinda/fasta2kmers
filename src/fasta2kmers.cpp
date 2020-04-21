@@ -30,8 +30,9 @@ int main(int argc, char *argv[])
 	int k=atoi(argv[2]);
 	char *fn = argv[1];
 	fp = gzopen(fn, "r");
-	if(fp==0){
+	if(fp==nullptr){
 		fprintf(stderr, "Couldn't open %s : %s\n", fn, errno ? strerror(errno) : "Out of memory");
+		return 1;
 	}
 
 
