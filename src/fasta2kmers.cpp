@@ -13,7 +13,7 @@ void split_seq(char *name, char *seq, int l, int k)
     for (int i = 0; i < l - k + 1; i++)
     {
         memcpy(buffer, seq + i, k * sizeof(char));
-        printf(">%d@%s\n%s\n", i, name, buffer);
+        printf(">%d@%s\n%s\n", i+1, name, buffer);
     }
 }
 
@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Usage: %s <in.seq> <k>\n", argv[0]);
         return 1;
     }
+
     int k = atoi(argv[2]);
     char *fn = argv[1];
     fp = gzopen(fn, "r");
